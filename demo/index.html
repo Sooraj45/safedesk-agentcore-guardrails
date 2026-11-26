@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SafeDesk is an interactive, browser-only demonstration of read-only IT ticket triage boundaries." />
+    <title>SafeDesk — IT ticket triage demo</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="SafeDesk home"><span class="brand-mark" aria-hidden="true">S</span><span>SafeDesk</span></a>
+        <span class="topbar-label">Read-only IT ticket triage</span>
+        <a class="top-link" href="#boundaries">View boundaries</a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Interactive browser demo</div>
+            <h1 id="hero-title">A helpful answer should know its limits.</h1>
+            <p>Try a fictional IT ticket. SafeDesk sorts the issue, suggests read-only checks, and routes risky requests to a human.</p>
+            <div class="hero-actions"><a class="primary-link" href="#workspace">Try the demo</a><a class="secondary-link" href="#how-it-works">How it works</a></div>
+          </div>
+          <div class="hero-visual" aria-label="A ticket moving through a safety boundary to a human technician">
+            <div class="visual-step"><span>01</span> Fictional ticket</div>
+            <div class="visual-line"></div>
+            <div class="visual-boundary"><span class="boundary-icon" aria-hidden="true">◇</span><strong>Safety boundary</strong><small>No system access · No secrets · No changes</small></div>
+            <div class="visual-line"></div>
+            <div class="visual-step"><span>02</span> Human decision</div>
+          </div>
+        </section>
+
+        <div class="notice" role="note"><strong>What you are using:</strong> a deterministic, browser-only illustration. It does not call AWS, inspect systems, or run a Bedrock model. Its answers are examples, not live AgentCore test results.</div>
+
+        <section id="workspace" class="workspace" aria-labelledby="workspace-title">
+          <div class="section-heading"><div><div class="eyebrow dark">The workspace</div><h2 id="workspace-title">Put the boundaries to work</h2></div><span class="section-caption">Sample tickets use fictional data</span></div>
+          <div class="work-grid">
+            <div class="input-panel">
+              <label for="ticket">Fictional ticket</label>
+              <textarea id="ticket" rows="8" spellcheck="true" placeholder="Describe a fictional IT issue. Please do not enter real passwords, personal data, or company records."></textarea>
+              <div class="input-footer"><span id="char-count">0 / 1200 characters</span><button id="analyze" type="button">Review ticket</button></div>
+              <div class="samples-heading">Or try a sample</div>
+              <div class="sample-buttons" id="samples" aria-label="Sample tickets"></div>
+            </div>
+            <div class="result-panel" aria-live="polite" aria-atomic="true">
+              <div class="result-top"><span class="result-kicker">Triage response</span><span id="result-state" class="state-pill">Waiting for a ticket</span></div>
+              <div id="result-empty" class="result-empty"><div class="empty-icon" aria-hidden="true">◎</div><h3>Ready when you are</h3><p>Choose a sample or write a fictional ticket to see how the browser demo handles it.</p></div>
+              <div id="result-content" class="result-content" hidden>
+                <div class="result-metrics"><div><span>Category</span><strong id="category"></strong></div><div><span>Priority</span><strong id="priority"></strong></div></div>
+                <div class="response-block"><h3>Safe checks</h3><ul id="safe-checks"></ul></div>
+                <div class="response-block escalation"><h3>Escalation</h3><p id="escalation"></p></div>
+                <p id="reason" class="result-reason"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="boundaries" class="boundaries" aria-labelledby="boundaries-title">
+          <div class="section-heading"><div><div class="eyebrow dark">Designed constraints</div><h2 id="boundaries-title">What SafeDesk will not do</h2></div><p>These limits are part of the proposed AgentCore project. This page illustrates them locally.</p></div>
+          <div class="boundary-grid">
+            <article><span class="card-icon">01</span><h3>Touch production</h3><p>No shell, browser, network, or write tools are exposed to the proposed agent.</p></article>
+            <article><span class="card-icon">02</span><h3>Handle secrets</h3><p>Credential requests are redirected to an authorized human process.</p></article>
+            <article><span class="card-icon">03</span><h3>Obey ticket instructions</h3><p>Instructions pasted into a ticket are treated as untrusted content.</p></article>
+            <article><span class="card-icon">04</span><h3>Claim work was done</h3><p>A triage answer never pretends to inspect or change a real system.</p></article>
+          </div>
+        </section>
+
+        <section id="how-it-works" class="how" aria-labelledby="how-title"><div><div class="eyebrow dark">The real project</div><h2 id="how-title">Built for review, awaiting a live run.</h2></div><p>The companion source project configures an Amazon Bedrock AgentCore managed harness with a restricted tool allowlist, disabled memory, a triage system prompt, and adversarial test cases. Because no AWS account is being used, the harness has not been deployed or live tested. A Vercel demo alone does not qualify as an AWS hackathon submission.</p></section>
+      </main>
+      <footer><span>SafeDesk · fictional IT triage demo</span><span>Browser-only · no ticket data is sent to a server</span></footer>
+    </div>
+  </body>
+</html>

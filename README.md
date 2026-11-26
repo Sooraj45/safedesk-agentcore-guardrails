@@ -2,6 +2,10 @@
 
 SafeDesk is an Amazon Bedrock AgentCore **managed harness** that classifies fictional IT support tickets and suggests read-only checks. It never gets a live infrastructure tool. The project is designed for the [Agents, your rules challenge](https://builder.aws.com/build/hackathons/61c39fba-1383-37e7-bd5c-3f9d889d89fc/agents-your-rules-bedrock-managed-agents-build).
 
+## Browser demo
+
+The [Vercel demo](https://safedesk-triage-demo.vercel.app) is a static, browser-only illustration of the triage boundaries. It uses deterministic rules in `demo/app.js`, sends no ticket data to a server, and does not invoke AWS or a model. It is **not** a live AgentCore test or an AWS hackathon submission. The user's choice to avoid AWS deployment is respected.
+
 ## The boundary
 
 | Rule | Enforcement |
@@ -29,6 +33,7 @@ flowchart LR
 - `app/SafeDesk/system-prompt.md`: triage and safety rules.
 - `tests/cases.json`: one normal ticket and six adversarial tickets, including a prompt injection.
 - `tests/run_live.py`: invokes the **deployed AWS harness** and records its real responses. The report intentionally does not invent pass results.
+- `demo/`: static Vercel site with fictional sample tickets and local illustrative responses.
 
 ## Deploy and test
 
