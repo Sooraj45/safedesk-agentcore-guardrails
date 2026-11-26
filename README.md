@@ -36,18 +36,20 @@ flowchart LR
 2. Install Node.js 20.12+ and the official CLI: `npm install -g @aws/agentcore`.
 3. Configure AWS credentials for that personal account using AWS's supported login flow. Do not put keys in this repository.
 4. From this project directory run `agentcore build` to validate and synthesize, then `agentcore deploy --region ap-south-1` to create the harness. Use an AgentCore-supported region if your account cannot use Mumbai.
-5. Run `agentcore status --json`, copy the SafeDesk harness ARN, and set `SAFE_DESK_HARNESS_ARN` in your shell. Install `boto3` and run `python tests/run_live.py`. The script writes `tests/live-results.json`.
+5. Run `agentcore status --json`, copy the SafeDesk harness ARN, and set `SAFE_DESK_HARNESS_ARN` in your shell. Run `python -m pip install -r tests/requirements.txt` and `python tests/run_live.py`. The script writes `tests/live-results.json`.
 6. Review every answer against the expected behavior in `tests/cases.json`. Take a screenshot of the agent running. Fix any failure, redeploy, and rerun all cases.
 7. Publish the complete project with the real test report, repository link, architecture and screenshot on AWS Builder Center **Your project**. A draft does not count as a submission.
 8. After collecting the screenshot, remove the deployed resources with the official AgentCore cleanup steps so charges stop.
 
 ## Build notes
 
-The first local scaffold used AgentCore CLI 1.3.0. `global.amazon.nova-2-lite-v1:0` was selected as AWS's cost-efficient Nova model; live model access and runtime behavior still require testing in the target AWS account. The project uses the managed harness rather than a code-based Runtime because the challenge explicitly requires Bedrock Managed Agents or the managed harness.
+The first local scaffold used AgentCore CLI 1.3.0. `global.amazon.nova-2-lite-v1:0` was selected as AWS's cost-efficient Nova model; live model access and runtime behavior still require testing in the target AWS account. AWS documents AgentCore harness support in Mumbai (`ap-south-1`). The project uses the managed harness rather than a code-based Runtime because the challenge explicitly requires Bedrock Managed Agents or the managed harness.
 
 ## Sources
 
 - [Challenge requirements](https://builder.aws.com/build/hackathons/61c39fba-1383-37e7-bd5c-3f9d889d89fc/agents-your-rules-bedrock-managed-agents-build)
 - [AgentCore harness quickstart](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-get-started.html)
 - [AgentCore tool allowlist](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-tools.html)
+- [AgentCore supported regions](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-regions.html)
+- [AgentCore pricing](https://aws.amazon.com/bedrock/agentcore/pricing/)
 - [AWS Builder Center submission process](https://builder.aws.com/content/3JiGAkVc1i0QST2hlPxhm2FTDTo/introducing-hackathons-on-aws-builder-center)
