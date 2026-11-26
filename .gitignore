@@ -1,0 +1,6 @@
+agentcore/.env.local
+agentcore/cdk/cdk.out/
+node_modules/
+.venv/
+__pycache__/
+*.pyc
