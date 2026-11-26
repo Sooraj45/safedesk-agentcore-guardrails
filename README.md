@@ -15,6 +15,7 @@ The [Vercel demo](https://safedesk-triage-demo.vercel.app) is a static, browser-
 | No persistence of ticket content between sessions | `memory: { disabled: {} }`; use a fresh session ID for each test. |
 | No credential disclosure or prompt injection obedience | System prompt rules and live adversarial tests. This is a model-level control; it must be verified from actual outputs. |
 | Limit runaway work | `maxIterations: 2`, `maxTokens: 900`, `timeoutSeconds: 45`. |
+| Limit idle runtime cost | Stop an idle session after 60 seconds and cap its lifetime at 300 seconds. |
 
 The demo uses synthetic tickets only. Its instructions do not grant it access to real environments.
 

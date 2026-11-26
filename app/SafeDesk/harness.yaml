@@ -70,16 +70,16 @@ environmentVariables: {}
 # Service runtime settings. For VPC mode, replace the resource IDs.
 # EFS and S3 Files mounts require VPC mode; mount paths must be unique.
 # https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-environment.html
-# environment:
-#   agentCoreRuntimeEnvironment:
-#     networkConfiguration:
-#       networkMode: VPC
-#       networkModeConfig:
-#         subnets: [subnet-0123456789abcdef0]
-#         securityGroups: [sg-0123456789abcdef0]
-#     lifecycleConfiguration:
-#       idleRuntimeSessionTimeout: 900
-#       maxLifetime: 28800
+environment:
+  agentCoreRuntimeEnvironment:
+    lifecycleConfiguration:
+      idleRuntimeSessionTimeout: 60
+      maxLifetime: 300
+#   networkConfiguration:
+#     networkMode: VPC
+#     networkModeConfig:
+#       subnets: [subnet-0123456789abcdef0]
+#       securityGroups: [sg-0123456789abcdef0]
 #     filesystemConfigurations:
 #       - sessionStorage:
 #           mountPath: /mnt/session
